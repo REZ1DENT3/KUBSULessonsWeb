@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Example JavaScript</title>
+    <script src="/js/jquery.js" type="text/javascript"></script>
+    <meta charset="utf-8"/>
+    <style>
+
+        body {
+            background: #090423;
+        }
+
+        .light_is_on {
+            background: #edff5a !important;
+        }
+
+        .light_is_off {
+            background: black !important;
+        }
+
+        #house, #house div {
+            border: 1px solid gainsboro;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        #house {
+            display: table;
+            height: 420px;
+            width: 280px;
+            background: #902c08;
+        }
+
+        #house div.row {
+            display: table-row-group;
+        }
+
+        #house div.row div {
+            display: table-cell;
+            background: black;
+            color: darkred;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+<div>
+    <button id="light_on">Включить свет</button>
+    <button id="light_off">Выключить свет</button>
+    <button id="light_rnd">Рандом включить</button>
+    <button id="light_rnd_off">Рандом выключить</button>
+    <button id="light_checkerboard_pattern">Шахматный порядок</button>
+    <button id="light_clean">Чистить</button>
+</div>
+
+<div id="house"></div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var s_rows = '.row';
+        var s_rows_div = s_rows + ' div';
+
+        var N = 20, M = 9;
+
+        for (i = 0; i < M; i++) {
+
+            $('#house').append('<div></div>');
+
+        }
+
+        $('#house div').addClass('row');
+
+        $(s_rows).each(function () {
+
+            for (i = 0; i < N; i++) {
+
+                $(this).append('<div></div>');
+
+            }
+
+        });
+
+        var $Apartments = $(s_rows_div);
+
+        var ___i = 0;
+        $Apartments.each(function () {
+
+            $(this).text(++___i);
+
+        });
+
+        var _ON = true;
+
+        function setAndResetLight() {
+
+            $Apartments.each(function () {
+
+                rnd1 = Math.floor((Math.random() * 100) / 10);
+                rnd2 = Math.floor((Math.random() * 100) / 10);
+
+                var $div = $(this);
+
+                if (rnd1 == 3 && $(this).hasClass('light_is_on')) {
+
+                    setTimeout(function () {
+
+                        $div.removeClass('light_is_on').addClass('light_is_off');
+
+                    }, Math.floor(Math.random() * 10000) * 2);
+
+                }
+
+                if (rnd1 == rnd2) {
+
+                    setTimeout(function () {
+
+                        if ($div.hasClass('light_is_off')) {
+
+                            $div.removeClass('light_is_off');
+
+                        }
+
+                        $div.addClass('light_is_on');
+
+                    }, Math.floor(Math.random() * 10000) * 2);
+
+                }
+
+            });
+
+            if (_ON) {
+
+                setTimeout(setAndResetLight, Math.floor(Math.random() * 10000));
+
+            }
+
+        }
+
+        $Apartments.click(function () {
+
+            if ($(this).hasClass('light_is_on')) {
+
+                $(this).addClass('light_is_off').removeClass('light_is_on');
+
+            } else {
+
+                $(this).addClass('light_is_on').removeClass('light_is_off');
+
+            }
+
+        });
+
+        $('#light_on').click(function () {
+
+            $Apartments.addClass('light_is_on').removeClass('light_is_off');
+
+        });
+
+        $('#light_off').click(function () {
+
+            $Apartments.removeClass('light_is_on').addClass('light_is_off');
+
+        });
+
+        $('#light_rnd').click(function () {
+
+            _ON = true;
+            setAndResetLight();
+
+        });
+
+        $('#light_rnd_off').click(function () {
+
+            _ON = false;
+
+        });
+
+        $('#light_clean').click(function () {
+
+            clean();
+
+        });
+
+        function clean() {
+
+            $Apartments.removeClass('light_is_on').removeClass('light_is_off');
+
+        }
+
+        $('#light_checkerboard_pattern').click(function () {
+
+            var ___j = 0;
+            var ___k = 0;
+
+            clean();
+
+            $Apartments.each(function () {
+
+                if ((___j + ___k) % 2) {
+
+                    $(this).addClass('light_is_on');
+
+                }
+
+                ___k = Math.floor(++___j /
+                        Math.floor($(s_rows_div).length / $(s_rows).length)
+                );
+
+            });
+
+        });
+
+//            setInterval(setAndResetLight, 3000);
+//            setAndResetLight();
+
+    });
+
+</script>
+
+</body>
+</html>

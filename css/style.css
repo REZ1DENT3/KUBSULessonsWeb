@@ -1,0 +1,57 @@
+body {
+    background: burlywood;
+}
+
+.all {
+    width: 900px;
+    padding: 0 0 0 0;
+    margin: auto;
+}
+
+.footer {
+    border: 1px solid green;
+    background: linear-gradient(0deg, yellow, red);
+    text-align: center;
+}
+
+.header {
+    padding: 2px 2px 2px 2px;
+    border: 1px solid yellow;
+    background: linear-gradient(-90deg, #f0d, #0f0);
+    color: white;
+}
+
+.clear {
+
+    margin: 2px;
+    clear: both;
+    padding: 2px;
+
+}
+
+.content_right {
+    width: 71%;
+    float: right;
+    border: 1px solid orange;
+    padding: 9px;
+}
+
+.content_left {
+    width: 25%;
+    float: left;
+}
+
+.content_left > div {
+    border: 1px solid darkred;
+    background: greenyellow;
+    color: red;
+    text-align: center;
+}
+
+.content_left > div > div {
+    text-align: left;
+}
+
+.content {
+    width: 100%;
+}
