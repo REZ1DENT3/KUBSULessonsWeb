@@ -38,7 +38,7 @@
 
         <div class="content_right">
 
-            {include datetime_for_page}
+            {include {$default_template}datetime_for_page}
 
             <h3>{$title}</h3>
 

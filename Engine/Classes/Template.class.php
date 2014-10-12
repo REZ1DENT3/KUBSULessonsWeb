@@ -134,6 +134,8 @@ class Template
     private function _parseInclude()
     {
 
+        $this->_parseVariables();
+
         $this->_template = preg_replace(
             '/{include\s+(.*?)}/i',
             $this->_php_start . "include '" . $this->_root .

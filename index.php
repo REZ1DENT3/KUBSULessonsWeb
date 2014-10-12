@@ -13,7 +13,9 @@ $db = new MyPDO(array(
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
 ));
 
-$tpl = new Template('main');
+$tpl = new Template(Config::get_template() . 'main');
+
+$tpl->assign('default_template', Config::get_template());
 
 Controllers::controller(
     ProcessingRequest::get('controller'),
