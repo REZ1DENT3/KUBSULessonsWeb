@@ -10,12 +10,14 @@ define('ACCESS', true);
 include_once ENGINE . 'autoload.php';
 
 $db = new MyPDO(array(
+
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+
 ));
 
-$tpl = new Template(Config::get_template() . 'main');
+$tpl = new Template(Core::get_template() . 'main');
 
-$tpl->assign('default_template', Config::get_template());
+$tpl->assign('default_template', Core::get_template());
 
 Controllers::controller(
     ProcessingRequest::get('controller'),
