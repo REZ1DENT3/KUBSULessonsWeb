@@ -12,7 +12,11 @@ class Core
 
         if ($template) {
 
-            self::$_template = $template;
+            if (file_exists(ROOT_DIR . TPL . $template)) {
+
+                self::$_template = $template;
+
+            }
 
         }
 

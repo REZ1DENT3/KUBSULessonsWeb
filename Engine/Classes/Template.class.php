@@ -13,7 +13,7 @@ class Template
 
     private $_ext = '.tpl';
 
-    private $_path = 'tpl/';
+    private $_path = TPL;
 
     private $_root = ROOT_DIR;
 
